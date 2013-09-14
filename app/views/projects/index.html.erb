@@ -1,2 +1,10 @@
-<h1>Projects#index</h1>
-<p>Find me in app/views/projects/index.html.erb</p>
+<script type="text/javascript" src="https://www.dropbox.com/static/api/1/dropins.js" id="dropboxjs" data-app-key="mkxtyja9dkglx0d"></script>
+<input type="dropbox-chooser" data-link-type="direct" name="selected-file" style="visibility: hidden;" id="db-chooser" 
+ data-extensions=".html"/>
+ <script type="text/javascript">
+  document.getElementById("db-chooser").addEventListener("DbxChooserSuccess",
+        function(e) {
+            window.location = "/editors/index?file_link="+e.files[0].link;
+        }, false);
+
+</script>

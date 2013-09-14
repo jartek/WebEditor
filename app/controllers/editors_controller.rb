@@ -1,6 +1,8 @@
 require "dropbox_sdk"
 class EditorsController < ApplicationController
   def index
+  	puts ";"*100
+  	puts params[:file_link]
   	get_files
   end
 

@@ -1,2 +1,7 @@
-<h1>Projects#new</h1>
-<p>Find me in app/views/projects/new.html.erb</p>
+<!-- Form for creating a folder  -->
+ <%= form_tag(projects_create_path, method: "get") do %>
+  <%= label_tag(:project_name, "Project Name:") %>
+  <%= text_field_tag(:project_name) %>
+  <%= submit_tag("Create Project") %>
+<% end %>
+ 

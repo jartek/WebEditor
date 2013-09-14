@@ -1,0 +1,96 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="/stylesheets/styles.css">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="/stylesheets/jquery-ui.css" />
+    <script src="/javascripts/jquery.js"></script>
+    <script src="/javascripts/jquery-migrate.js"></script>   
+    <script src="/javascripts/jquery-ui.js"></script>
+    <link href="/stylesheets/animate.min.css" rel="stylesheet" >
+    <link href="/stylesheets/foundation.min.css" rel="stylesheet" >
+    <script src="/javascripts/foundation/foundation.js"></script>
+    <script src="/javascripts/foundation/foundation.dropdown.js"></script>
+    <script src="/javascripts/codemirror.js"></script>
+    <link rel="stylesheet" href="/stylesheets/codemirror.css">
+    <script src="/javascripts/addon/search/search.js"></script>
+    <script src="/javascripts/addon/search/searchcursor.js"></script>
+    <script src="/javascripts/mode/javascript/javascript.js"></script>
+    <script src="/javascripts/jshint.js"></script>
+    <script src="/javascripts/jsonlint.js"></script>
+    <script src="/javascripts/addon/lint/lint.js"></script>
+    <script src="/javascripts/addon/lint/javascript-lint.js"></script>
+    <script src="/javascripts/addon/lint/json-lint.js"></script>
+    <script src="/javascripts/FilePanel.js"></script>
+    <script src="/javascripts/Menu.js"></script>
+    <script src="/javascripts/VisualEditorUI.js"></script>
+    <script src="/javascripts/CodeEditor.js"></script>
+    <script src="/javascripts/VisualEditor.js"></script>
+    <script src="/javascripts/main.js"></script>
+    <script src="/javascripts/foundation.min.js"></script>
+    
+    
+    <link rel="stylesheet" href="/stylesheets/theme/3024-day.css">
+    <link rel="stylesheet" href="/stylesheets/theme/3024-night.css">
+    <link rel="stylesheet" href="/stylesheets/theme/ambiance.css">
+    <link rel="stylesheet" href="/stylesheets/theme/base16-dark.css">
+    <link rel="stylesheet" href="/stylesheets/theme/base16-light.css">
+    <link rel="stylesheet" href="/stylesheets/theme/blackboard.css">
+    <link rel="stylesheet" href="/stylesheets/theme/cobalt.css">
+    <link rel="stylesheet" href="/stylesheets/theme/eclipse.css">
+    <link rel="stylesheet" href="/stylesheets/theme/elegant.css">
+    <link rel="stylesheet" href="/stylesheets/theme/erlang-dark.css">
+    <link rel="stylesheet" href="/stylesheets/theme/lesser-dark.css">
+    <link rel="stylesheet" href="/stylesheets/theme/midnight.css">
+    <link rel="stylesheet" href="/stylesheets/theme/monokai.css">
+    <link rel="stylesheet" href="/stylesheets/theme/neat.css">
+    <link rel="stylesheet" href="/stylesheets/theme/night.css">
+    <link rel="stylesheet" href="/stylesheets/theme/paraiso-dark.css">
+    <link rel="stylesheet" href="/stylesheets/theme/paraiso-light.css">
+    <link rel="stylesheet" href="/stylesheets/theme/rubyblue.css">
+    <link rel="stylesheet" href="/stylesheets/theme/solarized.css">
+    <link rel="stylesheet" href="/stylesheets/theme/the-matrix.css">
+    <link rel="stylesheet" href="/stylesheets/theme/tomorrow-night-eighties.css">
+    <link rel="stylesheet" href="/stylesheets/theme/twilight.css">
+    <link rel="stylesheet" href="/stylesheets/theme/vibrant-ink.css">
+    <link rel="stylesheet" href="/stylesheets/theme/xq-dark.css">
+    <link rel="stylesheet" href="/stylesheets/theme/xq-light.css">
+</head>
+<body>
+    <nav class="top-bar">
+      <ul class="title-area">
+      </ul>
+    
+      <section class="top-bar-section">
+        <a class="navbar-center">Logo</a>
+      </section>
+    </nav>
+    <div class="row" id="editor_holder" >
+        <div class="large-7 large-offset-1 columns">
+            <div class="row">
+                <div id="edit">sdkjfhsd fskdf
+                    sdlfsd fsd
+                    fsldfkskdf sd
+                    fsldnkfksd fsd
+                </div>
+            </div>
+        </div>
+        <div class="large-4 columns">
+            <h1 class="heading describe" > Editor 1.0</h1>
+            <h4 class="describe">The future of online editing has arrived</h4>
+            <br>
+            <br>
+            <p>Every line of code has been carefully crafted to create an immersive editing experience </p>
+        </div>
+        <div class="row">
+            <div class="large-1 large-offset-5 columns">
+                <a href="#" class="button" id="scroll">Features</a>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="/javascripts/skrollr.min.js"></script>
+<script src="main.js"></script> 
+</html>

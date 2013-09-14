@@ -12,5 +12,18 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require turbolinks
-//= require_tree .
+//= require jquery.ui.all
+//= require ./core/jquery-migrate
+//= require ./core/foundation.min
+//= require ./core/codemirror
+//= require ./core/search
+//= require ./core/searchcursor
+//= require ./core/javascript
+//= require ./core/jshint
+//= require ./core/jsonlint
+//= require ./editors/editorplugin/FilePanel
+//= require ./editors/editorplugin/Menu
+//= require ./editors/editorplugin/VisualEditorUi
+//= require ./editors/editorplugin/CodeEditor
+//= require ./editors/editorplugin/VisualEditor
+//= require ./editors/editorplugin/main

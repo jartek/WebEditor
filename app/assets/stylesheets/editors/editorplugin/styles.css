@@ -1,0 +1,143 @@
+html
+{
+    width:100%;
+    height:100%;
+}
+body
+{
+    width:100%;
+    height:100%;
+}
+.editor
+{
+    font-family: 'helvetica neue';
+    color: #333332;
+    font-size: 18px;
+    font-weight:200 !important;
+}
+
+.editor:focus {
+    border: none;
+    box-shadow:none;
+    
+}
+.toolbar
+{
+   background-color: #f6f9fc;
+    
+  /* Safari 4-5, Chrome 1-9 */
+  background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#fff), to(#f4f4f4));
+
+  /* Safari 5.1, Chrome 10+ */
+  background: -webkit-linear-gradient(top, #fff, #f4f4f4);
+
+  /* Firefox 3.6+ */
+  background: -moz-linear-gradient(top, #fff, #f4f4f4);
+
+  /* IE 10 */
+  background: -ms-linear-gradient(top, #fff, #f4f4f4);
+
+  /* Opera 11.10+ */
+  background: -o-linear-gradient(top, #fff, #f4f4f4);
+  border-radius:5px;
+  color:#2ba6cb;
+  width:auto;
+}
+input 
+{
+    color:black !important;
+}
+.toolbar_option
+{
+    padding: 10px;
+    background:none !important;
+    /* height:20px; */
+    width:auto;
+    color : #2ba6cb;
+    font-family: 'helvetica neue';
+    font-size: 15px;
+    font-weight:200;
+    cursor:pointer;
+}
+.toolbar:after 
+{
+    content: "";
+    position: absolute;
+    top: 100%;
+    left:50%;
+    border-style: solid;
+    border-width: 10px 10px 0;
+    border-color: #403f3f transparent;
+    display: block;
+    width: 0;
+    z-index: 1;
+}
+.toolbar button:hover
+{
+    color: #2ba6cb;
+}
+ .toolbar.hidden:after {
+        display: none;
+    }
+blockquote
+{
+   font-weight: 400;
+    font-style: italic;
+    border-left: 6px solid #57ad68;
+    margin: 50px 20%;
+    padding-bottom: 10px;
+    padding-left:5px;
+}
+hr
+{
+    display: block;
+    width: 20%;
+    margin: 50px auto 40px auto;
+    border: 1px solid #dededc;
+}
+pre
+{
+    font-family: Monaco,'Courier New','Courier',monospace;
+    font-size: 16px;
+    background: #f2f2f0;
+    margin: 50px 20%;
+    padding: 20px;
+}
+a
+{
+    color: #333332;
+    text-decoration: underline;
+}
+ a:hover {
+color: #57ad68;
+}
+.toolbar_option_list
+{
+    list-style-type:none;
+    margin:0;
+    padding:0;
+    height: 30px;
+}
+.toolbar_option_list li{
+  display: inline;
+}
+.font_dropdown
+{
+  background-color: #403f3f;
+  border-radius:5px;
+  color:white;
+  width:auto;
+}
+.font_dropdown ul
+{
+    list-style-type:none;
+    margin:0;
+    padding:0;
+}
+.font_dropdown li{
+  display: inline ;
+}
+table, th, td
+{
+    border: 1px solid black;
+}

@@ -10,6 +10,8 @@ class User < ActiveRecord::Base
     unless user
       user = User.new
       user.name = auth.extra.raw_info.display_name
+      user.access_token = auth.credentials.token
+      user.secret_token = auth.credentials.secret
       user.provider = auth.provider
       user.uid = auth.uid
       user.email = auth.info.email

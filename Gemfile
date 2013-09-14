@@ -26,7 +26,7 @@ gem 'omniauth'
 gem 'omniauth-dropbox'
 gem 'dropbox-sdk'
 gem 'figaro'
-
+gem 'zurb-foundation'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
 

@@ -1,11 +1,12 @@
 Testdropbox::Application.routes.draw do
   get "editors/index"
   get "projects/index"
-  get "projects/new"
+  get "projects/new" => "projects#new"
   get "projects/edit"
   get "projects/create"
   get "projects/destroy"
   get "projects/dropbox_callback/:type(/:folder_name)" => "projects#dropbox_callback" , as: :dropbox_callback
+
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
 
   # The priority is based upon order of creation: first created -> highest priority.

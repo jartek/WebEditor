@@ -1,6 +1,7 @@
 var VisualEditor = function()
 {
     this.file_panel = null;
+    this.url = '';
     this.file_panel_wrapper = null;
     this.menu_wrapper = $('<div></div>');
     this.menu = null;
@@ -20,8 +21,9 @@ var VisualEditor = function()
     this.media_size.css(this.media_size_attributes);
 }
 VisualEditor.prototype = {
-    init : function()
+    init : function(url)
     {
+        this.url = url;
         this.create_menu();
         this.create_wrappers();
         this.ui = new VisualEditorUI(this.iframe,this.iframe_wrapper,this.media_size_options);
@@ -58,8 +60,8 @@ VisualEditor.prototype = {
     },
     create_wrappers : function()
     {
-        var url = document.URL;
-        this.iframe.attr('src',url);
+        //var url = "https://www.dropbox.com/s/vsnjjiclh5gm6gs/Loading.html";
+        this.iframe.attr('src',this.url);
         this.iframe.attr(this.iframe_attributes);
         $('body').append(this.iframe);
         this.iframe.wrap(this.iframe_wrapper);

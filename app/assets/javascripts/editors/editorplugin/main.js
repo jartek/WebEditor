@@ -81,7 +81,7 @@ Editor.prototype = {
             }
             if(options.mode == 'visual')
             {
-                this.visualEditor.init();
+                this.visualEditor.init(options.url);
             }
             else
             {

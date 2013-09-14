@@ -1,14 +1,17 @@
 
+<script type="text/javascript" src = "/assets/jquery.js"></script>
+
 <%= javascript_tag do %>
-	$('body').ready(function()
-	{
-		var editor = new Editor(null);
+ $('body').ready(function()
+                       {
+                            var editor = new Editor(null);
                             editor.init({
+                                structure : "<%= @file_names.join(",") %>",
                                 air : false,
                                 toolbar : false,
                                 textarea : false,
                                 mode : 'visual',
                                 url : "<%= params[:file_link] %>"
                             });
-	})
+	});
 <% end %>

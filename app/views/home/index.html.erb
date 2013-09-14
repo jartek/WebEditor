@@ -1,24 +1,2 @@
-<a href="#" id= "callEditor" class="button">Default Button</a>
-<input type="dropbox-chooser" data-link-type="direct" name="selected-file" style="visibility: hidden;" id="db-chooser" 
- data-extensions=".html"/>
-<script type="text/javascript" src="/assets/jquery.js"></script>
-<script type="text/javascript" src="https://www.dropbox.com/static/api/1/dropins.js" id="dropboxjs" data-app-key="mkxtyja9dkglx0d"></script>
-<script type="text/javascript">
-  jQuery('#callEditor').click(function()
-                       {
-                            var editor = new Editor(null);
-                            editor.init({
-                                air : false,
-                                toolbar : false,
-                                textarea : false,
-                                mode : 'visual'
-                            });
-                      });
 
-  document.getElementById("db-chooser").addEventListener("DbxChooserSuccess",
-        function(e) {
-            
-        }, false);
-
-</script>
 

@@ -21,7 +21,10 @@ end
 request = Net::HTTP::Get.new(url.path)
 request.basic_auth url.user, url.password
 response = http.request(request)
+puts "$$$$"
 @body = response.body
+@body = @body.html_safe.gsub(/(?<!\n)\n(?!\n)/, ' ')
+puts @body
   	get_files
   end
 
@@ -40,5 +43,11 @@ def get_files(path='/')
 	contents.each { |a| @file_names << a['path'] }
 	session.delete :dropbox_session
 	flash[:success] = "You have successfully authorized with dropbox."
+end
+
+def to_s
+  attributes.each_with_object("") do |attribute, result|
+    result << "#{attribute[1].to_s} "
+  end
 end
 end

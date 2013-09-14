@@ -1,7 +1,8 @@
 var VisualEditor = function()
 {
     this.file_panel = null;
-    this.url = '';
+    this.structure = '';
+    this.contents = '';
     this.file_panel_wrapper = null;
     this.menu_wrapper = $('<div></div>');
     this.menu = null;
@@ -21,9 +22,10 @@ var VisualEditor = function()
     this.media_size.css(this.media_size_attributes);
 }
 VisualEditor.prototype = {
-    init : function(url)
+    init : function(structure,content)
     {
-        this.url = url;
+        this.structure = structure;
+        this.contents = content;
         this.create_menu();
         this.create_wrappers();
         this.ui = new VisualEditorUI(this.iframe,this.iframe_wrapper,this.media_size_options);
@@ -61,9 +63,10 @@ VisualEditor.prototype = {
     create_wrappers : function()
     {
         //var url = "https://www.dropbox.com/s/vsnjjiclh5gm6gs/Loading.html";
-        this.iframe.attr('src',this.url);
-        this.iframe.attr(this.iframe_attributes);
+        console.log('The value of the cotent is '+this.contents);
         $('body').append(this.iframe);
+        console.log('the vau of the html is '+this.iframe.contents().find('html').html());
+        this.iframe.attr(this.iframe_attributes);
         this.iframe.wrap(this.iframe_wrapper);
         this.iframe_wrapper = this.iframe.parent();
         this.iframe_wrapper.wrap(this.overall_iframe_wrapper);
@@ -72,6 +75,8 @@ VisualEditor.prototype = {
         this.overall_iframe_wrapper.prepend(this.media_size);
         this.iframe_wrapper.css('display','inline-block');
         var max = this.iframe.width();
+        this.iframe.contents().find('html').html(this.contents);
+        console.log('the value of the editor is '+this.iframe.contents().find('html').html());
         this.media_size_options[0] = {'max-width': max,'min-width':0};
         this.add_media_size_option();
     }

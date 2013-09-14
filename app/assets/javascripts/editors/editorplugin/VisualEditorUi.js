@@ -118,40 +118,41 @@ VisualEditorUI.prototype = {
     iframe_events : function()
     {
         var self = this;
-        this.iframe.load(function()
-                         {
-                            self.iframe.contents().find('head').append(self.style_script);
-                            self.iframe.contents().find("body"). click(function(event){
-                                event.stopPropagation();
-                                self.removeStyleCurrentElements(self.current_elements);
-                                self.cleanEditor();
-                                self.current_elements = [];
-                                self.style = {};
-                                self.current_elements[0] = $(this);
-                                self.highlightCurrentElements(self.current_elements);
-                            });
-                            self.iframe.contents().find("body").find('*').click(function(event){
-                                event.stopPropagation();
-                                self.cleanEditor();
-                                self.removeStyleCurrentElements(self.current_elements);
-                                self.current_elements = [];
-                                self.style = {};
-                                self.current_elements[0] = $(this);
-                                self.highlightCurrentElements(self.current_elements);
-                            });
-                             self.iframe.contents().find("body").find('*').dblclick(function(event){
-                                event.stopPropagation();
-                                self.iframe.contents().find("body").find('*').attr('contenteditable','false');
-                                $(this).attr('contenteditable','true'); 
-                             });
-                         });
+        
+        console.log('te value of the editor is '+self.iframe.contents().find('html').html());
+        self.iframe.contents().find('head').append(self.style_script);
+        self.iframe.contents().find("body").click(function(event){
+            event.stopPropagation();
+            self.removeStyleCurrentElements(self.current_elements);
+            self.cleanEditor();
+            self.current_elements = [];
+            self.style = {};
+            self.current_elements[0] = $(this);
+            self.highlightCurrentElements(self.current_elements);
+        });
+        self.iframe.contents().find("body").find('*').click(function(event){
+            event.stopPropagation();
+            self.cleanEditor();
+            self.removeStyleCurrentElements(self.current_elements);
+            self.current_elements = [];
+            self.style = {};
+            self.current_elements[0] = $(this);
+            console.log('I am in click');
+            self.highlightCurrentElements(self.current_elements);
+        });
+         self.iframe.contents().find("body").find('*').dblclick(function(event){
+            event.stopPropagation();
+            self.iframe.contents().find("body").find('*').attr('contenteditable','false');
+            $(this).attr('contenteditable','true'); 
+         });
+                        
     },
     highlightCurrentElements : function(current_elements)
     {
-        this.iframe.contents().find("body").find('*').removeClass('highlight');
+        this.iframe.contents().find("body").find('*').css('border','');
         for(var i=0;i<current_elements.length;i++)
         {
-            current_elements[i].toggleClass('highlight');
+            current_elements[i].css('border','dashed 1px black');
         }
     },
     cleanEditor : function()

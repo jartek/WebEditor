@@ -43,22 +43,21 @@ CodeEditor.prototype = {
     create_code_editor : function()
     {
         var self = this;
-        this.iframe.load(function()
-                         {
-                            self.code_editor_wrapper.append(self.code_editor);
-                            $('body').append(self.code_editor_wrapper);
-                            self.code_editor = CodeMirror(function(elt) {
-                              self.code_editor.get(0).parentNode.replaceChild(elt, self.code_editor.get(0));
-                            }, {value: self.iframe.contents().find('body').html(),
-                                lineNumbers: true,
-                                mode: "javascript",
-                                gutters: ["CodeMirror-lint-markers"],
-                                autofocus: true,
-                                lint: true});
-                             self.menu.init(self.code_editor,self.ui_editor);
-                             self.editor_events();
-                             self.iframe_events();
-                         });
+       
+        self.code_editor_wrapper.append(self.code_editor);
+        $('body').append(self.code_editor_wrapper);
+        self.code_editor = CodeMirror(function(elt) {
+          self.code_editor.get(0).parentNode.replaceChild(elt, self.code_editor.get(0));
+        }, {value: self.iframe.contents().find('body').html(),
+            lineNumbers: true,
+            mode: "javascript",
+            gutters: ["CodeMirror-lint-markers"],
+            autofocus: true,
+            lint: true});
+         self.menu.init(self.code_editor,self.ui_editor);
+         self.editor_events();
+         self.iframe_events();
+                         
     },
     editor_events : function()
     {
@@ -82,16 +81,17 @@ CodeEditor.prototype = {
                 }
             }
             console.log('the element is ',element);
-            self.iframe.contents().find('body').find('*').removeClass('glow');
+            self.iframe.contents().find('body').find('*').css('background-color','');
             var iframe_elements = self.iframe.contents().find('body').find('*');
             console.log('the iframe element are ',iframe_elements);
             
             for(var i=0;i<iframe_elements.length;i++)
             {
+                console.log('The nus dkfjsbdf skdjfskdbf skdfhskdjhfs dkfjhskdjfhs dfsd');
                 if(iframe_elements[i].isEqualNode(element))
                 {
                     console.log("HOLY GRAIL >>>>>>>>>>>");
-                    $(iframe_elements[i]).addClass('glow');
+                    $(iframe_elements[i]).css('background-color','yellow');
                     self.iframe.contents().find('body').scrollTop($(iframe_elements[i]).offset().top);
                 }
             }

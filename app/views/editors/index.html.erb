@@ -2,6 +2,7 @@
 <script type="text/javascript" src = "/assets/jquery.js"></script>
 
 <%= javascript_tag do %>
+
  $('body').ready(function()
                        {
                             var editor = new Editor(null);
@@ -11,7 +12,7 @@
                                 toolbar : false,
                                 textarea : false,
                                 mode : 'visual',
-                                url : "<%= params[:file_link] %>"
+                                content : "<%= @body.html_safe %>"
                             });
 	});
 <% end %>

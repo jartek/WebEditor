@@ -1,4 +1,10 @@
 Work::Application.routes.draw do
+  get "projects/new"
+  get "projects/edit"
+  get "projects/update"
+  get "projects/create"
+  get "projects/show"
+  get "editor/index"
   get "home/index"
   devise_for :users
   # The priority is based upon order of creation: first created -> highest priority.

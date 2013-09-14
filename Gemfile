@@ -31,6 +31,17 @@ gem 'devise'
 gem 'omniauth'
 gem 'omniauth-dropbox'
 
+gem 'zurb-foundation'
+gem 'compass-rails', github: "Compass/compass-rails", branch: "rails4-hack"
+
+group :development do
+  gem 'better_errors'
+  gem 'binding_of_caller', :platforms=>[:mri_19, :mri_20, :rbx]
+  gem 'quiet_assets'
+  gem 'rb-fchange', :require=>false
+  gem 'rb-fsevent', :require=>false
+  gem 'rb-inotify', :require=>false
+end
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false

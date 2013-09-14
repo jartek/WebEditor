@@ -4,7 +4,7 @@ Devise.setup do |config|
   # The secret key used by Devise. Devise uses this key to generate
   # random tokens. Changing this key will render invalid all existing
   # confirmation, reset password and unlock tokens in the database.
-  config.secret_key = 'e63d49cf2c365e0484e4f6e46e2924cf281828206cdcbcb2dad95e7b3e52a818b17692edec52491f4c6f92ce6bbbfcf76197ba8ba51a7d5c9d5d840deb0408a2'
+  config.secret_key = '53f43f259896ae1950072b6fa1540e473471ba2b8e41f80d0132b36413d7126a1bda3e55f1eace54412815f7e4f60bd54dfac4225b72a5f46cb1f55604b9e2ca'
 
   # ==> Mailer Configuration
   # Configure the e-mail address which will be shown in Devise::Mailer,
@@ -30,7 +30,7 @@ Devise.setup do |config|
   # You can also supply a hash where the value is a boolean determining whether
   # or not authentication should be aborted when the value is not present.
   # config.authentication_keys = [ :email ]
-  config.omniauth :dropbox, 'app_key', "app_secret", :require => "omniauth-dropbox"
+  config.omniauth :dropbox, ENV["DROPBOX_KEY"], ENV["DROPBOX_SECRET"], :require => "omniauth-dropbox"
 
   # Configure parameters from the request object used for authentication. Each entry
   # given should be a request method and it will automatically be passed to the
@@ -99,7 +99,7 @@ Devise.setup do |config|
   config.stretches = Rails.env.test? ? 1 : 10
 
   # Setup a pepper to generate the encrypted password.
-  # config.pepper = '2783478bb2867f9e38a88b0389f919831393efb47831f31acb7248ebe59d8e0a1ce422ca3108bdb2d2113402ae7d1ab1339b3979c5c72505aacb3d2c621dd09f'
+  # config.pepper = 'e4190fb6dacd0cfea3e1054630860097b589a9e0cd96264485912cecce7eb64499600a3882099f8607346ab172631f2f2bef1261b499cfe35906d4a5fe04c8ea'
 
   # ==> Configuration for :confirmable
   # A period that the user is allowed to access the website even without

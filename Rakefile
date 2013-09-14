@@ -3,4 +3,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-Work::Application.load_tasks
+Testdropbox::Application.load_tasks

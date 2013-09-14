@@ -9,4 +9,4 @@
 
 # Make sure your secret_key_base is kept private
 # if you're sharing your code publicly.
-Work::Application.config.secret_key_base = 'd027186f8a903770d6c384720bd0c2c1e06e2f9fc1fa98974783ed296f74c935689ec6d50dafef56f73ace13cfac91bfa01f524a5f6f409f87113b28b16f394a'
+Testdropbox::Application.config.secret_key_base = '5b87fff6e53daec652c8113e9747c827e75868d221b8943a8625826d0e7266377fb4caef927ae3000aeb2fcc56b38682e923ffea6f3f6873f86b8c663090a5fc'

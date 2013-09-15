@@ -67,14 +67,14 @@ $default-float: left;
 
 // Colors
 
-// $primary-color: #2ba6cb;
+$primary-color: #CE4216;
 // $secondary-color: #e9e9e9;
 // $alert-color: #c60f13;
 // $success-color: #5da423;
 
 // Make sure border radius matches unless we want it different.
 
-// $global-radius: 3px;
+$global-radius: 3px;
 // $global-rounded: 1000px;
 
 // Inset shadow shiny edges and depressions.
@@ -160,7 +160,7 @@ $default-float: left;
 
 // Control header font styles
 
-// $header-font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+$header-font-family: 'Fjalla One', sans-serif;
 // $header-font-weight: bold;
 // $header-font-style: normal;
 // $header-font-color: #222;
@@ -193,7 +193,7 @@ $default-float: left;
 
 // Style paragraphs
 
-// $paragraph-font-family: inherit;
+$paragraph-font-family: 'ABeeZee', sans-serif;
 // $paragraph-font-weight: normal;
 // $paragraph-font-size: 1em;
 // $paragraph-line-height: 1.6;
@@ -1234,7 +1234,7 @@ $default-float: left;
 
 // Background color for the top bar
 
-// $topbar-bg: #111;
+$topbar-bg: #222;
 
 // Height and margin
 
@@ -1261,10 +1261,10 @@ $default-float: left;
 
 // Set the link colors and styles for top-level nav
 
-// $topbar-link-color: #fff;
+$topbar-link-color: #ccc;
 // $topbar-link-color-hover: #fff;
 // $topbar-link-color-active: #fff;
-// $topbar-link-weight: bold;
+$topbar-link-weight: normal;
 // $topbar-link-font-size: emCalc(13);
 // $topbar-link-hover-lightness: -30%; // Darken by 30%
 // $topbar-link-bg-hover: darken($topbar-bg, 3%);
@@ -1301,3 +1301,53 @@ $default-float: left;
 // $topbar-sticky-class: ".sticky";
 
 @import 'foundation';
+@import url(http://fonts.googleapis.com/css?family=Grand+Hotel);
+@import url(http://fonts.googleapis.com/css?family=Fjalla+One);
+@import url(http://fonts.googleapis.com/css?family=ABeeZee);
+@import "compass";
+
+.button{
+  @include box-shadow(none);
+}
+
+.contain-to-grid{
+  @include background(linear-gradient(rgba(48,48,48,0.95), rgba(34,34,34,0.9)));
+  .title-area{
+    h1{
+      font-family: 'Grand Hotel', cursive;
+      a{
+        color: lighten($primary-color, 9%);
+        font-size: emCalc(30px);
+        &:hover{
+          color: lighten($primary-color, 5%);
+        }
+      }
+    }
+  }
+  .top-bar{
+    background: transparent;
+    section ul{
+      background: transparent;
+      li a.button{
+        color: #fff;
+        text-transform: uppercase;
+        &:hover{
+          background: lighten($primary-color, 6%);
+        }
+      }
+      li a:not(.button){
+        background: transparent;
+        &:hover{
+          color: lighten($topbar-link-color, 30%);
+          background: darken($topbar-bg, 20%);
+        }
+      }
+    }
+  }
+}
+
+
+body{
+  background: #eee;
+  background-image: url("/assets/sandpaper.png");
+}

@@ -1,0 +1,23 @@
+<div class="contain-to-grid top">
+  <nav class="top-bar">
+    <ul class="title-area">
+      <li class="name">
+        <h1><a href="/" class="logo">Clay</a></h1>
+      </li>
+      <li class="toggle-topbar"><a href="#sitemap"></a></li>
+    </ul>
+    <section class="top-bar-section">
+      <ul class="right">
+          <% if user_signed_in? %>
+            <li>
+              <%= link_to 'Logout', destroy_user_session_path, :method=>'delete' %>
+            </li>
+          <% else %>
+            <li>
+              <%= link_to 'Login', "/users/auth/dropbox", :class => "small button" %>
+            </li>
+          <% end %>
+      </ul>
+    </section>
+  </nav>
+</div>

@@ -27,6 +27,7 @@ gem 'omniauth-dropbox'
 gem 'dropbox-sdk'
 gem 'figaro'
 gem 'zurb-foundation'
+gem 'compass-rails', github: "Compass/compass-rails", branch: "rails4-hack"
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
 

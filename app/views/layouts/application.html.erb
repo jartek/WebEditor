@@ -21,6 +21,10 @@
   </head>
 
   <body>
+  <% if params[:controller].include?("editor") %>
+    <%= yield %>
+  <% else %>
+  <%= stylesheet_link_tag "core" %>
     <header>
       <%= render 'layouts/header' %>
     </header>
@@ -28,6 +32,8 @@
     <footer>
       <%= render 'layouts/footer' %>
     </footer>
+
+    <% end %>
 
     <%= javascript_include_tag "application" %>
   </body>

@@ -1325,6 +1325,10 @@ $topbar-link-weight: normal;
     }
   }
   .top-bar{
+    h1{
+      font-family: 'Grand Hotel', cursive !important;
+      border: 0 !important;
+    }
     background: transparent;
     section ul{
       background: transparent;

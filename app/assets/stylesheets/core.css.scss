@@ -96,18 +96,27 @@ section.features{
 }
 
 #parse_logo{
-  width: 293px; 
+  width: 293px;
   height: 85px;
   background: #000;
 }
 
 .highlight{
   background: #CE4216 !important;
-  h5{
-    color: #fff;
-  }
 }
 
 #features{
   margin-bottom: 30px;
+}
+
+.top-bar{
+  * {
+    border-bottom: none !important;
+    font-family: 'Grand Hotel', cursive !important;
+    color: #fff !important;
+  }
+  li > a {
+    color: #fff !important;
+    font-family:'Fjalla One', sans-serif !important;
+  }
 }

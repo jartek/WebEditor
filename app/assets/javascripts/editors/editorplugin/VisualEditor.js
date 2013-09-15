@@ -36,7 +36,8 @@ VisualEditor.prototype = {
         this.file_panel = new FilePanel(this.editor,this.iframe);
         this.file_panel_wrapper = this.file_panel.init();
         this.menu.addFilePanelWrapper(this.file_panel_wrapper);
-        this.code_editor.init();
+        var codemirror = this.code_editor.init();
+        this.ui.codeMirror(codemirror);
     },
     create_menu : function()
     {

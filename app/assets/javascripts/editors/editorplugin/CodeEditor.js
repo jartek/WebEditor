@@ -16,6 +16,7 @@ CodeEditor.prototype = {
         console.log('I am going to hide the editor ');
         this.ui_editor.hide();
         this.create_code_editor();
+        return this.code_editor;
     },
     iframe_events : function()
     {
@@ -48,7 +49,7 @@ CodeEditor.prototype = {
         $('body').append(self.code_editor_wrapper);
         self.code_editor = CodeMirror(function(elt) {
           self.code_editor.get(0).parentNode.replaceChild(elt, self.code_editor.get(0));
-        }, {value: self.iframe.contents().find('body').html(),
+        }, {value: self.iframe.contents().find('html').html(),
             lineNumbers: true,
             mode: "javascript",
             gutters: ["CodeMirror-lint-markers"],
@@ -62,6 +63,11 @@ CodeEditor.prototype = {
     editor_events : function()
     {
         var self = this;
+
+        this.iframe.contents().find('html').change(function()
+        {
+            self.code_editor.setValue($(this).html());
+        });
         this.code_editor.on('cursorActivity',function(code_editor){
             var line_no = code_editor.getCursor().line
             var line = code_editor.getLine(line_no);
@@ -99,6 +105,6 @@ CodeEditor.prototype = {
             //self.iframe.contents().find('body').
             console.log('the value of the event is ',code_editor.getCursor().line);
            //self.iframe.contents().find('body').html(code_editor.getValue());
-        })
+        });
     }
 }

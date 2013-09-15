@@ -97,6 +97,7 @@ var VisualEditorUI = function(iframe,iframe_wrapper,media_size_options)
     this.desktop_view = $('<button>desktop</button>');
     this.editor_attributes = {'width':'20%','height':'100%'};
     this.editor_styles = {'right':'0%','top':'0%','overflow':'scroll','color':'white'};
+    this.code_editor = null;
 }
 VisualEditorUI.prototype = {
     init : function()
@@ -114,6 +115,47 @@ VisualEditorUI.prototype = {
             });
         this.editor.resizable();
         return this.editor;
+    },
+    codeMirror : function(code_editor)
+    {
+        this.code_editor = code_editor;
+        var self = this;
+        this.code_editor.on('change',function(code_editor)
+        {
+            this.style_script = $('<style></style>');
+            var content = self.code_editor.getValue();
+            console.log('before appenf is '+self.code_editor.getValue());
+            console.log('before appenf is '+content);
+            self.iframe.contents().find('html').get(0).innerHTML = content;
+            console.log('before appenf is '+content);
+            console.log('the value of the html on change is >>>>>>>>'+self.iframe.contents().find('html').html());
+            console.log('before appenf is '+content);
+            self.iframe.contents().find('html').find('head').append(self.style_script);
+            self.iframe.contents().find("body").click(function(event){
+                event.stopPropagation();
+                self.removeStyleCurrentElements(self.current_elements);
+                self.cleanEditor();
+                self.current_elements = [];
+                self.style = {};
+                self.current_elements[0] = $(this);
+                self.highlightCurrentElements(self.current_elements);
+            });
+            self.iframe.contents().find("body").find('*').click(function(event){
+                event.stopPropagation();
+                self.cleanEditor();
+                self.removeStyleCurrentElements(self.current_elements);
+                self.current_elements = [];
+                self.style = {};
+                self.current_elements[0] = $(this);
+                console.log('I am in click');
+                self.highlightCurrentElements(self.current_elements);
+            });
+             self.iframe.contents().find("body").find('*').dblclick(function(event){
+                event.stopPropagation();
+                self.iframe.contents().find("body").find('*').attr('contenteditable','false');
+                $(this).attr('contenteditable','true'); 
+             });
+        });       
     },
     iframe_events : function()
     {
@@ -272,6 +314,9 @@ VisualEditorUI.prototype = {
                                   console.log('the value of thne st is ',self.style_script);
                                   self.addClassCurrentElements(self.current_elements,self.class_input.val());
                                   self.removeStyleCurrentElements(self.current_elements);
+
+                                 self.code_editor.setValue(self.iframe.contents().find('html').html());
+      
                                   console.log('I am going to apply style '+text); 
                                });
         this.class_wrapper.append(this.class_input);  

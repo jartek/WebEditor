@@ -1,19 +1,13 @@
 require 'dropbox_sdk'
 class ProjectsController < ApplicationController
+
+	before_filter :get_session,:only=>[:index,:create,:create_template]
   def index
-  	puts ")"*100
-	puts current_user.access_token
-	dbsession = DropboxSession.new(ENV["DROPBOX_KEY"], ENV["DROPBOX_SECRET"])
-	dbsession.set_access_token(current_user.access_token,current_user.secret_token);
-	client = DropboxClient.new(dbsession, "dropbox")
-	puts "*"*100
 	# puts client.account_info.inspect
-	entries = client.metadata(path='/',file_limit=100,list=true)
+	entries = @client.metadata(path='/',file_limit=100,list=true)
 	contents = entries["contents"]
-	puts contents.inspect
 	@file_names = []
 	contents.each { |a| @file_names << a['path'] }
-    puts @file_names
 	session.delete :dropbox_session
 	flash[:success] = "You have successfully authorized with dropbox."
   end
@@ -25,37 +19,35 @@ class ProjectsController < ApplicationController
   end
 
   def create 
-	folder_name = params[:project_name]
-	dbsession = DropboxSession.new(ENV["DROPBOX_KEY"], ENV["DROPBOX_SECRET"])
-	#serialize and save this DropboxSession
-	session[:dropbox_session] = dbsession.serialize
-	#pass to get_authorize_url a callback url that will return the user here
-	redirect_to dbsession.get_authorize_url url_for(:action => 'dropbox_callback',:type => "create",:folder_name => folder_name) 
+		folder_name = params[:project_name].gsub(" ","_")
+		entries = @client.file_create_folder(path=folder_name)
+		create_template(entries["path"],"template_type")
+		session.delete :dropbox_session
   end
   def destroy
+  
   end
 
-  def create_folder
-  	
-  end
-
-  def dropbox_callback
-  	type = params[:type]
-  	folder_name = params[:folder_name]
-  	if type == "create"
-	  	dbsession = DropboxSession.new(ENV["DROPBOX_KEY"], ENV["DROPBOX_SECRET"])
-		dbsession.set_access_token(current_user.access_token,current_user.secret_token);
-		client = DropboxClient.new(dbsession, "dropbox")
-		puts "*"*100
-		puts folder_name
-		puts client.file_create_folder(path=folder_name)
-		entries = client.file_create_folder(path=folder_name)
-		puts entries['contents']
+  def create_template(folder_path,template_type)
+  	folders = ["js","css","html"]
+  	folders.each do |folder|
+  		folder_name = params[:project_name].gsub(" ","_")
+		if folder == "html"
+			#TODO add template files
+			entries = @client.put_file(path= folder_path + '/' + 'index.html',"<html></html>")
+		else
+			entries = @client.file_create_folder(path=folder_path+"/" + folder)
+		end
 		session.delete :dropbox_session
-		flash[:success] = "You have successfully authorized with dropbox."
-  	else
-  		#MGB LOOK HERE! 
   	end
+
   end
+
+  private 
+  	def get_session
+		dbsession = DropboxSession.new(ENV["DROPBOX_KEY"], ENV["DROPBOX_SECRET"])
+		dbsession.set_access_token(current_user.access_token,current_user.secret_token);
+		@client = DropboxClient.new(dbsession, "dropbox")
+  	end 
 
 end

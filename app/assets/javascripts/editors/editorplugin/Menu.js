@@ -9,10 +9,9 @@ var Menu = function(menu_wrapper)
     this.theme_option = $('<li><a>Themes</a></li>');
     this.theme_dropdown = $('<ul></ul>');
     this.themes = ['neat','night','solarized dark']
-    this.new_option = $('<li><a>New</a><li>');
+    this.save_option = $('<li><a>Save</a><li>');
     this.show_editor = $('<li><a>Visual Editor</a></li>');
     this.show_file_panel = $('<li><a>File Panel</a></li>');
-    this.new_dropdown = $('<ul></ul>');
     console.log('I am in menu ceater');
 }
 Menu.prototype = {
@@ -21,7 +20,7 @@ Menu.prototype = {
         this.editor = editor;
         this.codemirror = codemirror;
         this.ApplyThemes();
-        this.NewOption();
+        this.SaveOption();
         this.showEditorOption();
         this.showFilePanelOption();
         this.menu.menu({
@@ -63,10 +62,12 @@ Menu.prototype = {
                                },this));
         this.menu.append(this.show_editor);
     },
-    NewOption : function()
+    SaveOption : function()
     {
-        this.new_dropdown.append($('<li>askjdhakjshd</li>'));
-        this.new_option.append(this.new_dropdown);
-        this.menu.append(this.new_option);
+        this.save_option.click($.proxy(function(){
+            this.codemirror.getValue();
+        },this));
+        this.menu.append(this.save_option);
+
     }
 }

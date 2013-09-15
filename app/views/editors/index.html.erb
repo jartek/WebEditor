@@ -6,7 +6,7 @@
  $('body').ready(function()
                        {
                             
-                            var datatemp = "<%= @body.html_safe %>"
+                            var datatemp = '<%= @body.html_safe %>'
                             console.log(datatemp);
                             var temp = $('<div></div>').html(datatemp)
                             var editor = new Editor(null);

@@ -33,8 +33,11 @@ class ProjectsController < ApplicationController
   	folders.each do |folder|
   		folder_name = params[:project_name].gsub(" ","_")
 		if folder == "html"
-			#TODO add template files
-			entries = @client.put_file(path= folder_path + '/' + 'index.html',"<html></html>")
+			templ = Templater.match_template(template_type)
+			entries = @client.put_file(path= folder_path + '/' + 'index.html',templ)
+			puts "$$$$$$$$$$$"
+			puts entries[:data => templ]
+			redirect_to editors_index_path(:data=>templ)
 		else
 			entries = @client.file_create_folder(path=folder_path+"/" + folder)
 		end

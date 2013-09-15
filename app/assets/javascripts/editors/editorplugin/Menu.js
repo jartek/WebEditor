@@ -65,7 +65,13 @@ Menu.prototype = {
     SaveOption : function()
     {
         this.save_option.click($.proxy(function(){
-            this.codemirror.getValue();
+           var content_data =  this.codemirror.getValue();
+           var location = window.location.href
+          $.ajax({
+                type: "POST",  
+                url: "/editors/update",
+                data: {'content':content_data , 'location':location}
+                });
         },this));
         this.menu.append(this.save_option);
 

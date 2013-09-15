@@ -1,6 +1,6 @@
 Testdropbox::Application.routes.draw do
   get "editors/index"
-  get "editors/update"
+  post "editors/update"
   get "projects/index"
   get "projects/new" => "projects#new"
   get "projects/edit"

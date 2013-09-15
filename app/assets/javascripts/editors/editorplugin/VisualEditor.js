@@ -24,7 +24,7 @@ var VisualEditor = function()
 VisualEditor.prototype = {
     init : function(structure,content)
     {
-        this.structure = structure;
+        this.structure = structure.split(',');
         this.contents = content;
         this.create_menu();
         this.create_wrappers();
@@ -33,11 +33,13 @@ VisualEditor.prototype = {
         this.editor.css({'position':'fixed','left':'80%','background-color':'#b4b4b4','z-index':'100'});
         this.editor.draggable();
         this.code_editor = new CodeEditor(this.iframe,this.iframe_wrapper,this.editor,this.menu);
-        this.file_panel = new FilePanel(this.editor,this.iframe);
+        this.file_panel = new FilePanel(this.editor,this.iframe,this.structure);
         this.file_panel_wrapper = this.file_panel.init();
         this.menu.addFilePanelWrapper(this.file_panel_wrapper);
         var codemirror = this.code_editor.init();
         this.ui.codeMirror(codemirror);
+        this.file_panel.codeMirror(codemirror);
+        this.menu.filePanel(this.file_panel);
     },
     create_menu : function()
     {

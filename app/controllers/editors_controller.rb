@@ -21,8 +21,9 @@ if(params.has_key?(:file_link))
   request = Net::HTTP::Get.new(@url.path)
   request.basic_auth @url.user, @url.password
   response = http.request(request)
-  @body = response.body
-  @body = @body.html_safe.gsub(/[^>]*(\n)/, '').gsub(/(")|(')/, "\"")
+  @body = response.body.to_s
+  puts @body.gsub!(/(\n)|(\r)/, "").inspect
+  puts @body.gsub!(/(")/, "'").inspect
 else
 	@body = params[:data]
 end
@@ -37,22 +38,38 @@ def update
 	dbsession = DropboxSession.new(ENV["DROPBOX_KEY"], ENV["DROPBOX_SECRET"])
 	dbsession.set_access_token(current_user.access_token,current_user.secret_token);
 	client = DropboxClient.new(dbsession, "dropbox")
-	entries = client.put_file(path= location,content)
+	entries = client.put_file(path= location,content,true)
 	# entries = @client.put_file(path= folder_path + '/' + 'index.html',"<html></html>")
 
 
 end
-def get_files(path='/')
+def get_files
+  path_file = params["path"].blank? ? "/" : params["path"];
+  puts "$$$$$$$$"
+  puts path_file
 	dbsession = DropboxSession.new(ENV["DROPBOX_KEY"], ENV["DROPBOX_SECRET"])
 	dbsession.set_access_token(current_user.access_token,current_user.secret_token);
 	client = DropboxClient.new(dbsession, "dropbox")
 	# puts client.account_info.inspect
-	entries = client.metadata(path='/',file_limit=100,list=true)
+	entries = client.metadata(path=path_file,file_limit=100,list=true)
 	contents = entries["contents"]
 	@file_names = []
 	contents.each { |a| @file_names << a['path'] }
 	session.delete :dropbox_session
 	flash[:success] = "You have successfully authorized with dropbox."
+  respond_to do |format|
+    format.html {}
+    format.json {render :json=>  @file_names.to_json}
+  end
+end
+
+def get_file_content
+  dbsession = DropboxSession.new(ENV["DROPBOX_KEY"], ENV["DROPBOX_SECRET"])
+  dbsession.set_access_token(current_user.access_token,current_user.secret_token);
+  client = DropboxClient.new(dbsession, "dropbox")
+  file_path = params["file_path"]
+  contents, metadata = client.get_file_and_metadata(file_path)
+  render :json => contents.to_json
 end
 
 def to_s

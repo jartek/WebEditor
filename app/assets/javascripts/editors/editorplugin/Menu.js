@@ -1,8 +1,10 @@
 var Menu = function(menu_wrapper)
 {
-    this.file_panel_wrapper = null;;
+    this.file_panel_wrapper = null;
+    this.file_panel = null;
     this.editor = null;
     this.menu_wrapper = menu_wrapper;
+    this.menu_wrapper.addClass('menu_wrapper');
     this.codemirror = null;
     this.menu = $('<ul></ul>');
     this.menu_wrapper.append(this.menu);
@@ -30,6 +32,10 @@ Menu.prototype = {
     addFilePanelWrapper : function(file_panel_wrapper)
     {
         this.file_panel_wrapper = file_panel_wrapper;
+    },
+    filePanel : function(file_panel)
+    {
+        this.file_panel = file_panel;
     },
     showFilePanelOption : function()
     {
@@ -66,7 +72,8 @@ Menu.prototype = {
     {
         this.save_option.click($.proxy(function(){
            var content_data =  this.codemirror.getValue();
-           var location = window.location.href
+           var location = this.file_panel.current_file;
+           console.log(location);
           $.ajax({
                 type: "POST",  
                 url: "/editors/update",

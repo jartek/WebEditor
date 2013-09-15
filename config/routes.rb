@@ -7,6 +7,8 @@ Testdropbox::Application.routes.draw do
   get "projects/create"
   get "projects/destroy"
   get "projects/dropbox_callback/:type(/:folder_name)" => "projects#dropbox_callback" , as: :dropbox_callback
+  post "editors/get_files/(:path)" => "editors#get_files" , as: :get_files
+  post "editors/get_file_content/(:file_path)" => "editors#get_file_content" , as: :get_file_content
   get "home/index" => "home#index"
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
 

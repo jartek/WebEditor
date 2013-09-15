@@ -5,10 +5,11 @@
 
  $('body').ready(function()
                        {
-                            
-                            var datatemp = '<%= @body.html_safe %>'
+                            var datatemp = $('<div>');
+                            datatemp.html('<%= CGI.unescapeHTML @body %>');
+                           
                             console.log(datatemp);
-                            var temp = $('<div></div>').html(datatemp)
+                            var temp = datatemp.html();
                             var editor = new Editor(null);
                             editor.init({
                                 structure : "<%= @file_names.join(",") %>",
@@ -16,7 +17,16 @@
                                 toolbar : false,
                                 textarea : false,
                                 mode : 'visual',
-                                content : datatemp
+                                content : datatemp.text()
                             });
 	});
+
+    function htmlDecode(input){
+  var e = document.createElement('div');
+  e.innerHTML = input;
+  return e.childNodes.length === 0 ? "" : e.childNodes[0].nodeValue;
+}
+
+<!-- htmlDecode("&lt;img src='myimage.jpg'&gt;"); -->
+
 <% end %>

@@ -13,6 +13,7 @@ class ProjectsController < ApplicationController
   end
 
   def new
+  	render :partial => "new", :locals => { :template => { :url => params[:url].blank? ? nil : params[:url], :type => params[:type].blank? ? nil : params[:type] } }
   end
 
   def edit
@@ -21,22 +22,23 @@ class ProjectsController < ApplicationController
   def create 
 		folder_name = params[:project_name].gsub(" ","_")
 		entries = @client.file_create_folder(path=folder_name)
-		create_template(entries["path"],"template_type")
+		create_template(entries["path"],params[:type],params[:url])
 		session.delete :dropbox_session
   end
   def destroy
   
   end
 
-  def create_template(folder_path,template_type)
+  def create_template(folder_path,template_type,template)
+  	puts folder_path 
+  	puts template_type
+  	puts template 
   	folders = ["js","css","html"]
   	folders.each do |folder|
   		folder_name = params[:project_name].gsub(" ","_")
 		if folder == "html"
-			templ = Templater.match_template(template_type)
+			templ = Templater.match_template(template_type,template)
 			entries = @client.put_file(path= folder_path + '/' + 'index.html',templ)
-			puts "$$$$$$$$$$$"
-			puts entries[:data => templ]
 			redirect_to editors_index_path(:data=>templ)
 		else
 			entries = @client.file_create_folder(path=folder_path+"/" + folder)

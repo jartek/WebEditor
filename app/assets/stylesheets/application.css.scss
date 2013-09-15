@@ -45,6 +45,10 @@ ul.nav li {
 }
 
 footer{
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+  left: 0;
   margin-top: 5px;
   background: $footer-bg;
   color: $footer-color;
@@ -78,6 +82,7 @@ section.main{
 section.features{
   width: 100%;
   background: #ccc;
+  margin-bottom: 20px;
 }
 
 #features{
@@ -89,4 +94,29 @@ section.features{
 
 .captions{
   float: left;
+}
+
+#stuff .large-4{
+  cursor: pointer;
+}
+
+#create_btn{
+  margin: 10px 0;
+}
+
+#parse_logo{
+  width: 293px; 
+  height: 85px;
+  background: #000;
+}
+
+.highlight{
+  background: #CE4216 !important;
+  h5{
+    color: #fff;
+  }
+}
+
+#features{
+  margin-bottom: 30px;
 }

@@ -1,9 +1,12 @@
 <!-- Form for creating a folder  -->
- <%= form_tag(projects_create_path, method: "get") do %>
+<div class="row">
+<div class="large-12 columns">
+	<%= form_tag(projects_create_path, method: "get") do %>
  <%= hidden_field_tag :url, template[:url] %>
  <%= hidden_field_tag :type, template[:type] %>
   <%= label_tag(:project_name, "Project Name:") %>
   <%= text_field_tag(:project_name) %>
-  <%= submit_tag("Create Project"), :class => "button medium" %>
-<% end %>
-
+  <%= submit_tag("Create Project", :class => "medium button") %>
+<% end %>	
+</div>
+</div>

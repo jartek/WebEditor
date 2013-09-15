@@ -47,9 +47,12 @@ CodeEditor.prototype = {
        
         self.code_editor_wrapper.append(self.code_editor);
         $('body').append(self.code_editor_wrapper);
+        var temp_div = $('<html></html>');
+        console.log('The intial setting of the editor is '+self.iframe.contents().find('html').html());
+        temp_div.get(0).innerHTML = self.iframe.contents().find('html').html();
         self.code_editor = CodeMirror(function(elt) {
           self.code_editor.get(0).parentNode.replaceChild(elt, self.code_editor.get(0));
-        }, {value: self.iframe.contents().find('html').html(),
+        }, {value: temp_div.html(),
             lineNumbers: true,
             mode: "javascript",
             gutters: ["CodeMirror-lint-markers"],

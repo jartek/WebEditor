@@ -1,12 +1,96 @@
-<%= link_to "Create New Projects" , projects_new_path %>
+<div id="stuff" class="row">
+	<div class="large-12 columns">
+		<div class="large-4 small-6 columns">
+            <img src="http://scriptsrc.net/images/logo-jquery.jpg">
+          <div class="panel">
+            <h5 data-template-type="jquery" data-template-url="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js">jQuery</h5>
+          </div>
+        </div>
+        <div class="large-4 small-6 columns">
+            <img src="http://scriptsrc.net/images/logo-jqueryui.jpg">
 
-<script type="text/javascript" src="https://www.dropbox.com/static/api/1/dropins.js" id="dropboxjs" data-app-key="mkxtyja9dkglx0d"></script>
-<input type="dropbox-chooser" data-link-type="direct" name="selected-file" style="visibility: hidden;" id="db-chooser" 
- data-extensions=".html"/>
- <script type="text/javascript">
-  document.getElementById("db-chooser").addEventListener("DbxChooserSuccess",
-        function(e) {
-            window.location = "/editors/index?file_link="+e.files[0].link;
-        }, false);
+          <div class="panel">
+            <h5 data-template-type="jqueryui" data-template-url="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js">jQuery UI</h5>
+          </div>
+        </div>
+        <div class="large-4 small-6 columns">
+            <img src="http://scriptsrc.net/images/logo-yui.jpg">
 
+          <div class="panel">
+            <h5 data-template-type="YUI" data-template-url="http://ajax.googleapis.com/ajax/libs/yui/3.3.0/build/yui/yui-min.js">YUI</h5>
+          </div>
+        </div>
+        <div class="large-4 small-6 columns">
+            <img src="http://scriptsrc.net/images/logo-mootools.jpg">
+
+          <div class="panel">
+            <h5 data-template-type="mootools" data-template-url="http://ajax.googleapis.com/ajax/libs/mootools/1.4.5/mootools-yui-compressed.js">MooTools</h5>
+          </div>
+        </div>
+        <div class="large-4 small-6 columns">
+            <img src="http://scriptsrc.net/images/logo-prototype.jpg">
+
+          <div class="panel">
+            <h5 data-template-type="prototype" data-template-url="http://ajax.googleapis.com/ajax/libs/prototype/1.7.0.0/prototype.js">Prototype</h5>
+          </div>
+        </div>
+        <div class="large-4 small-6 columns">
+            <img src="http://www.spotlio.com/wp-content/uploads/2012/10/Parse_Logo_Partner.png" id="parse_logo">
+
+          <div class="panel">
+            <h5 data-template-type="parse" data-template-url="http://www.parsecdn.com/js/parse-1.2.12.min.js">Parse</h5>
+          </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+	<div class="large-offset-3">
+<script type="text/javascript" src = "/assets/jquery.js"></script>
+<%= link_to "Create New Project" , "#", :class => "large button", :id => "create_btn" %><span style="margin: 0 5px;">or</span>
+		<script type="text/javascript" src="https://www.dropbox.com/static/api/1/dropins.js" id="dropboxjs" data-app-key="mkxtyja9dkglx0d"></script>
+		<input type="dropbox-chooser" data-link-type="direct" name="selected-file" style="visibility: hidden;" id="db-chooser"
+		 data-extensions=".html"/>
+		 <script type="text/javascript">
+		  document.getElementById("db-chooser").addEventListener("DbxChooserSuccess",
+		        function(e) {
+		            window.location = "/editors/index?file_link="+e.files[0].link;
+		        }, false);
+
+		</script>
+	</div>
+</div>
+
+<div id="project_name_model" class="reveal-modal">
+	
+</div>
+
+<script type="text/javascript">
+	$(document).ready(function(e){
+		var url, type;
+		$("#stuff .large-4").bind("click", function(e){
+			$('.panel').removeClass('highlight');
+			if($(this).find('h5').data("templateUrl") === url){
+				url = null;
+				type = null;
+				return true;
+			}
+			url = $(this).find('h5').data("templateUrl");
+			type = $(this).find('h5').data("templateType");
+			$(this).find('.panel').addClass("highlight");
+		});
+
+		$("#create_btn").bind("click", function(e){
+			$.ajax({
+				url: "<%= projects_new_path %>",
+				data: {
+					url: url,
+					type: type
+				},
+				success: function(data){
+					$("#project_name_model").html(data);
+					$('#project_name_model').foundation('reveal', 'open');
+				}
+			})
+		})
+	});
 </script>
